@@ -5,10 +5,17 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
-	port := flag.String("p", "8100", "port to serve on")
+
+	if len(os.Args) != 2 {
+		fmt.Println("Usage : ./simpleHTTPserver <PORT>")
+		os.Exit(1)
+	}
+
+	port := flag.String("p", os.Args[1], "port to serve on")
 	directory := flag.String("d", ".", "the directory of static file to host")
 	flag.Parse()
 
